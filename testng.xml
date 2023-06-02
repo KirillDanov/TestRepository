@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2"
+          name="Test API">
+        <classes>
+            <class name="tests.TestClass">
+                <methods>
+                    <include name="checkPostOrder"/>
+                    <include name="testPostByNumber"/>
+                    <include name="nonExistentPostTest"/>
+                    <include name="createPostTest"/>
+                    <include name="userCheck"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

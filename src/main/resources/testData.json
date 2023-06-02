@@ -1,0 +1,10 @@
+{
+  "testURL": "https://jsonplaceholder.typicode.com",
+  "userId": 10,
+  "postId": 99,
+  "postIdNotFound": 150,
+  "userIdForModel": 5,
+  "testPostUserId": 1,
+  "postsEndpoint": "/posts",
+  "usersEndpoint": "/users"
+}
