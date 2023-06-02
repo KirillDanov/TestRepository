@@ -1,0 +1,11 @@
+{
+  "passwordLength": 11,
+  "emailLength": 10,
+  "isEmailContainsNumbers": true,
+  "isEmailContainsLetters": true,
+  "domainLength": 10,
+  "isDomainContainsNumbers": false,
+  "isDomainContainsLetters": true,
+  "neededTimerStart": "00:00",
+  "numberOfInterests": 3
+}
