@@ -5,15 +5,13 @@ import forms.cards.FirstCard;
 import forms.cards.SecondCard;
 import forms.cards.ThirdCard;
 import forms.pages.MainPage;
-import java.awt.*;
-import java.net.URISyntaxException;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class TaskTest extends BaseTest {
 
   @Test(testName = "Registration")
-  public void testRegistration() throws AWTException, URISyntaxException {
+  public void testRegistration() {
     MainPage mainPage = new MainPage();
     Assert.assertTrue(mainPage.state().waitForDisplayed(), "Main page is not open");
     mainPage.clickStartBtn();

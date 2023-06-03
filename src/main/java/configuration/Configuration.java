@@ -1,50 +1,54 @@
 package configuration;
 
+import aquality.selenium.core.utilities.ISettingsFile;
+
 public class Configuration {
+  private static final ISettingsFile environment = Environment.getCurrentEnvironment();
+  private static final ISettingsFile testData = Environment.getTestData();
 
   private Configuration() {}
 
   public static String getStartUrl() {
-    return Environment.getCurrentEnvironment().getValue("/startUrl").toString();
+    return environment.getValue("/startUrl").toString();
   }
 
   public static int getRobotDelay() {
-    return (int) Environment.getCurrentEnvironment().getValue("/robotDelay");
+    return (int) environment.getValue("/robotDelay");
   }
 
   public static int getPasswordLength() {
-    return (int) Environment.getTestData().getValue("/passwordLength");
+    return (int) testData.getValue("/passwordLength");
   }
 
   public static int getEmailLength() {
-    return (int) Environment.getTestData().getValue("/emailLength");
+    return (int) testData.getValue("/emailLength");
   }
 
   public static boolean isEmailContainsLetters() {
-    return (boolean) Environment.getTestData().getValue("/isEmailContainsLetters");
+    return (boolean) testData.getValue("/isEmailContainsLetters");
   }
 
   public static boolean isEmailContainsNumbers() {
-    return (boolean) Environment.getTestData().getValue("/isEmailContainsNumbers");
+    return (boolean) testData.getValue("/isEmailContainsNumbers");
   }
 
   public static boolean isDomainContainsLetters() {
-    return (boolean) Environment.getTestData().getValue("/isDomainContainsLetters");
+    return (boolean) testData.getValue("/isDomainContainsLetters");
   }
 
   public static boolean isDomainContainsNumbers() {
-    return (boolean) Environment.getTestData().getValue("/isDomainContainsNumbers");
+    return (boolean) testData.getValue("/isDomainContainsNumbers");
   }
 
   public static int getDomainLength() {
-    return (int) Environment.getTestData().getValue("/domainLength");
+    return (int) testData.getValue("/domainLength");
   }
 
   public static String getNeededTimerStart() {
-    return Environment.getTestData().getValue("/neededTimerStart").toString();
+    return testData.getValue("/neededTimerStart").toString();
   }
 
   public static int getNumberOfInterests() {
-    return (int) Environment.getTestData().getValue("/numberOfInterests");
+    return (int) testData.getValue("/numberOfInterests");
   }
 }

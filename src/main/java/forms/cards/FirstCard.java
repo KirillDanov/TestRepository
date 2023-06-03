@@ -8,7 +8,6 @@ import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import configuration.Configuration;
 import java.util.List;
-import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import utilities.RandomUtil;
@@ -92,8 +91,7 @@ public class FirstCard extends Form {
 
   public void changeDomainEnd() {
     domainEndDropdown.click();
-    Random random = new Random();
-    int randomEnd = random.nextInt(domainEnds.size());
+    int randomEnd = RandomUtil.getRandom().nextInt(domainEnds.size() - 1) + 1;
     domainEnds.get(randomEnd).click();
   }
 

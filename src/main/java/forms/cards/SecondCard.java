@@ -8,7 +8,6 @@ import configuration.Configuration;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Set;
 import org.openqa.selenium.By;
@@ -42,29 +41,32 @@ public class SecondCard extends Form {
     int numberOfCheckboxes = allCheckBoxes.size();
     allCheckBoxes.get(numberOfCheckboxes - 1).click();
     Set<Integer> setOfInterests =
-        RandomUtil.getSetOfRandomUniqueNumbers(numberOfInterests, numberOfCheckboxes - 1);
-    for (Integer i : setOfInterests) {
-      allCheckBoxes.get(i).check();
-    }
+        RandomUtil.getSetOfRandomUniqueNumbers(
+            numberOfInterests, numberOfCheckboxes, List.of(17, 20));
+    setOfInterests.forEach(i -> allCheckBoxes.get(i).check());
   }
 
-  public void sendPhoto() throws AWTException, URISyntaxException {
+  public void sendPhoto() {
     int robotDelay = Configuration.getRobotDelay();
     upload.click();
-    Robot robot = new Robot();
-    robot.delay(robotDelay);
-    StringSelection selection =
-        new StringSelection(FileUtil.getAbsoluteFilePathFromResoursesAsString("image.jpg"));
-    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-    robot.keyPress(KeyEvent.VK_CONTROL);
-    robot.keyPress(KeyEvent.VK_V);
-    robot.keyRelease(KeyEvent.VK_V);
-    robot.keyRelease(KeyEvent.VK_CONTROL);
-    robot.delay(robotDelay);
-    robot.keyPress(KeyEvent.VK_ENTER);
-    robot.delay(robotDelay);
-    robot.keyRelease(KeyEvent.VK_ENTER);
-    imageUploaded.state().waitForDisplayed();
+    try {
+      Robot robot = new Robot();
+      robot.delay(robotDelay);
+      StringSelection selection =
+          new StringSelection(FileUtil.getAbsoluteFilePathFromResourcesAsString("image.jpg"));
+      Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+      robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.keyPress(KeyEvent.VK_V);
+      robot.keyRelease(KeyEvent.VK_V);
+      robot.keyRelease(KeyEvent.VK_CONTROL);
+      robot.delay(robotDelay);
+      robot.keyPress(KeyEvent.VK_ENTER);
+      robot.delay(robotDelay);
+      robot.keyRelease(KeyEvent.VK_ENTER);
+      imageUploaded.state().waitForDisplayed();
+    } catch (AWTException e) {
+      e.printStackTrace();
+    }
   }
 
   public void clickNextBtn() {

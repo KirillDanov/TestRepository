@@ -8,6 +8,7 @@ public class MainPage extends Form {
   private final IButton startButton =
       getElementFactory()
           .getButton(By.xpath("//a[contains(@class, 'start__link')]"), "Start button");
+
   public MainPage() {
     super(By.xpath("//button[contains(@class, 'start__button')]"), "Main page");
   }
