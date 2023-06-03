@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Objects;
 import lombok.Data;
 
 @SuppressWarnings("unused")
@@ -12,14 +13,19 @@ public class Address {
   private Geo geo;
 
   @Override
-  public boolean equals(Object obj) {
-    if (obj instanceof Address other) {
-      return this.street.equals(other.street)
-          && this.suite.equals(other.suite)
-          && this.city.equals(other.city)
-          && this.zipcode.equals(other.zipcode)
-          && this.geo.equals(other.geo);
-    }
-    return false;
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Address address = (Address) o;
+    return Objects.equals(street, address.street)
+        && Objects.equals(suite, address.suite)
+        && Objects.equals(city, address.city)
+        && Objects.equals(zipcode, address.zipcode)
+        && Objects.equals(geo, address.geo);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(street, suite, city, zipcode, geo);
   }
 }

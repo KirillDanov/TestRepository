@@ -1,8 +1,10 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
 import lombok.Data;
 
+@SuppressWarnings("unused")
 @Data
 public class User {
   private Integer id;
@@ -25,6 +27,11 @@ public class User {
           && this.company.equals(other.company);
     }
     return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, userName, email, address, phone, website, company);
   }
 
   @JsonProperty("username")

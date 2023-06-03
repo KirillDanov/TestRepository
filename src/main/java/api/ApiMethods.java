@@ -10,6 +10,7 @@ import models.User;
 import utilities.DataUtility;
 
 public class ApiMethods {
+  private ApiMethods() {}
 
   public static Response sendGetRequest(String endpoint) {
     return given().get(endpoint);

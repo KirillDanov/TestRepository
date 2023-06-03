@@ -1,7 +1,9 @@
 package models;
 
+import java.util.Objects;
 import lombok.Data;
 
+@SuppressWarnings("unused")
 @Data
 public class Company {
   private String name;
@@ -16,5 +18,10 @@ public class Company {
           && this.bs.equals(other.bs);
     }
     return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, catchPhrase, bs);
   }
 }

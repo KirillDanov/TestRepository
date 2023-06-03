@@ -2,6 +2,7 @@ package models;
 
 import lombok.Data;
 
+@SuppressWarnings("ClassCanBeRecord")
 @Data
 public class NewPost {
   private final Integer userId;
