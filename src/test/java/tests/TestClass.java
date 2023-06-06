@@ -5,8 +5,7 @@ import api.Specifications;
 import enums.Enums;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import models.NewPost;
-import models.PostResponse;
+import models.PostModel;
 import models.User;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -42,7 +41,7 @@ public class TestClass extends BaseTestClass {
     int postId = DataUtility.getPostId();
     int userId = DataUtility.getUserId();
     Response post = ApiMethods.getPostById(postId);
-    PostResponse postModel = post.as(PostResponse.class);
+    PostModel postModel = post.as(PostModel.class);
     Assert.assertEquals(postModel.getId(), postId, String.format("Post ID isn`t %s", postId));
     Assert.assertEquals(postModel.getUserId(), userId, String.format("User ID isn`t %s", userId));
     Assert.assertFalse(postModel.getTitle().isEmpty(), "Post title is empty");
@@ -67,22 +66,21 @@ public class TestClass extends BaseTestClass {
     Specifications.installSpecifications(
         Specifications.getRequestSpec(URL, ContentType.JSON),
         Specifications.getResponseSpec(HttpStatus.SC_CREATED, ContentType.JSON));
-    NewPost newPostModel = DataUtility.getTestPost();
-    Response newPost = ApiMethods.sendPost(newPostModel);
-    PostResponse postResponse = newPost.as(PostResponse.class);
+    PostModel newPostModel = DataUtility.getTestPost();
+    PostModel postModelFromResponse = ApiMethods.sendPost(newPostModel).as(PostModel.class);
     Assert.assertEquals(
         newPostModel.getBody(),
-        postResponse.getBody(),
+        postModelFromResponse.getBody(),
         "Body in response is not equal to sent post");
     Assert.assertEquals(
         newPostModel.getTitle(),
-        postResponse.getTitle(),
+        postModelFromResponse.getTitle(),
         "Title in response is not equal to sent post");
     Assert.assertEquals(
         newPostModel.getUserId(),
-        postResponse.getUserId(),
+        postModelFromResponse.getUserId(),
         "User id in response is not equal to sent post");
-    Assert.assertFalse(postResponse.getId().toString().isEmpty(), "Id is empty");
+    Assert.assertFalse(postModelFromResponse.getId().toString().isEmpty(), "Id is empty");
   }
 
   @Test(testName = "User from DataBase test")

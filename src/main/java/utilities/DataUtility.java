@@ -2,7 +2,7 @@ package utilities;
 
 import static enums.Enums.RESOURCES_PATH;
 
-import models.NewPost;
+import models.PostModel;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class DataUtility {
@@ -35,10 +35,6 @@ public class DataUtility {
     return JsonUtility.getValueFromJson(TEST_DATA_PATH, Integer.class, "/userIdForModel");
   }
 
-  public static Integer getTestPostUserId() {
-    return JsonUtility.getValueFromJson(TEST_DATA_PATH, Integer.class, "/testPostUserId");
-  }
-
   public static String getPostsEndpoint() {
     return JsonUtility.getValueFromJson(TEST_DATA_PATH, String.class, "/postsEndpoint");
   }
@@ -47,10 +43,11 @@ public class DataUtility {
     return JsonUtility.getValueFromJson(TEST_DATA_PATH, String.class, "/usersEndpoint");
   }
 
-  public static NewPost getTestPost() {
-    return new NewPost(
-        DataUtility.getTestPostUserId(),
-        RandomStringUtils.randomAlphanumeric(10),
-        RandomStringUtils.randomAlphanumeric(10));
+  public static PostModel getTestPost() {
+    return PostModel.builder()
+        .userId(DataUtility.getUserId())
+        .title(RandomStringUtils.randomAlphanumeric(10))
+        .body(RandomStringUtils.randomAlphanumeric(10))
+        .build();
   }
 }

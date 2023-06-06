@@ -1,9 +1,13 @@
 package models;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.extern.jackson.Jacksonized;
 
 @Data
-public class PostResponse {
+@Builder
+@Jacksonized
+public class PostModel {
   private Integer userId;
   private Integer id;
   private String title;

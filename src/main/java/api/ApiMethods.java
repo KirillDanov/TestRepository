@@ -4,8 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import io.restassured.response.Response;
 import java.util.List;
-import models.NewPost;
-import models.PostResponse;
+import models.PostModel;
 import models.User;
 import utilities.DataUtility;
 
@@ -29,13 +28,13 @@ public class ApiMethods {
         String.format("%s/%s", DataUtility.getPostsEndpoint(), numPost));
   }
 
-  public static Response sendPost(NewPost testPost) {
+  public static Response sendPost(PostModel testPost) {
     return ApiMethods.getPostResponse(DataUtility.getPostsEndpoint(), testPost);
   }
 
   public static boolean arePostsSortedById(Response response) {
-    List<PostResponse> postsList = response.jsonPath().getList(".", PostResponse.class);
-    List<Integer> postsIds = postsList.stream().map(PostResponse::getId).toList();
+    List<PostModel> postsList = response.jsonPath().getList(".", PostModel.class);
+    List<Integer> postsIds = postsList.stream().map(PostModel::getId).toList();
     List<Integer> sortedPostIds = postsIds.stream().sorted().toList();
     return postsIds.equals(sortedPostIds);
   }
