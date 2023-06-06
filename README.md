@@ -15,6 +15,7 @@ UI test was made with **Auqality framework**, based on S**elenium WebDriver**, u
 * **RestAssured**
 * **TestNG**
 * **SureFire plugin for handling xml**
+* **Allure reporting**
 ### **Built With**:
 - **JDK 17**
 - **Maven**
