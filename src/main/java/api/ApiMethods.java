@@ -12,11 +12,14 @@ public class ApiMethods {
   private ApiMethods() {}
 
   public static Response sendGetRequest(String endpoint) {
-    return given().get(endpoint);
+    return given()
+            .get(endpoint);
   }
 
   public static <T> Response getPostResponse(String endpoint, T body) {
-    return given().body(body).post(endpoint);
+    return given()
+            .body(body)
+            .post(endpoint);
   }
 
   public static Response getAllPosts() {
@@ -33,9 +36,17 @@ public class ApiMethods {
   }
 
   public static boolean arePostsSortedById(Response response) {
-    List<PostModel> postsList = response.jsonPath().getList(".", PostModel.class);
-    List<Integer> postsIds = postsList.stream().map(PostModel::getId).toList();
-    List<Integer> sortedPostIds = postsIds.stream().sorted().toList();
+    List<PostModel> postsList = response
+            .jsonPath()
+            .getList(".", PostModel.class);
+    List<Integer> postsIds = postsList
+            .stream()
+            .map(PostModel::getId)
+            .toList();
+    List<Integer> sortedPostIds = postsIds
+            .stream()
+            .sorted()
+            .toList();
     return postsIds.equals(sortedPostIds);
   }
 
@@ -44,7 +55,13 @@ public class ApiMethods {
   }
 
   public static User getUserByIdFromResponse(Response response, int requiredId) {
-    List<User> userList = response.jsonPath().getList(".", User.class);
-    return userList.stream().filter(user -> user.getId() == requiredId).findFirst().orElse(null);
+    List<User> userList = response
+            .jsonPath()
+            .getList(".", User.class);
+    return userList
+            .stream()
+            .filter(user -> user.getId() == requiredId)
+            .findFirst()
+            .orElse(null);
   }
 }
